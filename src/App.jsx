@@ -1,7 +1,14 @@
-import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import JackIt from "./components/JackIt";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Header />
+      <JackIt />
+    </div>
+  );
 }
 
 export default App;
