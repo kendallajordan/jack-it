@@ -5,12 +5,23 @@ import EntryList from "./EntryList";
 
 export default function JackIt() {
   const [entries, setEntries] = useState([]);
+  const [points, setPoints] = useState(100);
 
   return (
     <div className={styles.container}>
-      <EntryForm entries={entries} setEntries={setEntries} />
+      <EntryForm
+        entries={entries}
+        setEntries={setEntries}
+        points={points}
+        setPoints={setPoints}
+      />
       {console.log(entries)}
-      <EntryList entries={entries} setEntries={setEntries} />
+      <EntryList
+        entries={entries}
+        setEntries={setEntries}
+        points={points}
+        setPoints={setPoints}
+      />
     </div>
   );
 }
