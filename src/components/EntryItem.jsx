@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./entryitem.module.css";
 
 export default function EntryItem({
@@ -8,17 +9,35 @@ export default function EntryItem({
   points,
   setPoints,
 }) {
-  function handleRatingChange(e) {
-    const value = parseInt(e.target.value);
+  const [ratingIsEmpty, setRatingIsEmpty] = useState(false);
 
-    if (isNaN(value)) {
+  function handleRatingChange(e) {
+    const value = e.target.value;
+
+    // If user leaves rating field empty,
+    // treat entry as having 0 rating in regards to points.
+    if (value === "") {
+      setPoints((points) => points + rating);
+      setEntries(
+        entries.map((entry) =>
+          entry.name === name ? { ...entry, rating: 0 } : entry
+        )
+      );
+      setRatingIsEmpty(true);
+      return;
+    }
+    setRatingIsEmpty(false);
+
+    const numValue = parseInt(value, 10);
+
+    if (isNaN(numValue)) {
       return;
     }
 
     const usedPoints = 100 - points;
 
     // If you manually assign points that exceed 100, just give entry remaining points.
-    if (usedPoints + (value - rating) > 100) {
+    if (usedPoints + (numValue - rating) > 100) {
       const maxPointAllocation = rating + points;
       setEntries(
         entries.map((entry) =>
@@ -29,14 +48,18 @@ export default function EntryItem({
     } else {
       setEntries(
         entries.map((entry) =>
-          entry.name === name ? { ...entry, rating: value } : entry
+          entry.name === name ? { ...entry, rating: numValue } : entry
         )
       );
-      setPoints((points) => points + (rating - value));
+      setPoints((points) => points + (rating - numValue));
     }
   }
 
   function decrementNumber() {
+    if (ratingIsEmpty) {
+      setRatingIsEmpty(false);
+    }
+
     if (rating <= 1) {
       return;
     }
@@ -50,6 +73,10 @@ export default function EntryItem({
   }
 
   function incrementNumber() {
+    if (ratingIsEmpty) {
+      setRatingIsEmpty(false);
+    }
+
     if (points === 0) {
       return;
     }
@@ -83,7 +110,7 @@ export default function EntryItem({
           type="number"
           min={1}
           max={points}
-          value={rating}
+          value={ratingIsEmpty ? "" : rating}
           onChange={handleRatingChange}
         />
         <button

@@ -34,6 +34,12 @@ export default function EntryButtons({
     let end = 0;
 
     for (let i = 0; i < entries.length; i++) {
+      if (entries[i].rating === 0) {
+        updatedEntries[i].min = -1;
+        updatedEntries[i].max = -1;
+        continue;
+      }
+
       end = start + entries[i].rating - 1;
 
       updatedEntries[i].min = start;
