@@ -17,12 +17,14 @@ export default function JackIt() {
 
   return (
     <div className={styles.container}>
-      <EntryForm
-        entries={entries}
-        setEntries={setEntries}
-        points={points}
-        setPoints={setPoints}
-      />
+      {!lockedIn && (
+        <EntryForm
+          entries={entries}
+          setEntries={setEntries}
+          points={points}
+          setPoints={setPoints}
+        />
+      )}
 
       {!lockedIn && (
         <EntryList
@@ -44,7 +46,6 @@ export default function JackIt() {
         />
       )}
 
-      {console.log(finalists)}
       {lockedIn && <FinalList finalists={finalists} />}
 
       {lockedIn && (
