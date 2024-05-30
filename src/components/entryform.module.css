@@ -3,8 +3,11 @@
   border-radius: 8px;
   padding: 20px;
   padding-top: 0;
+  margin: auto;
   background-color: rgb(195, 195, 243);
   text-align: center;
+  width: 60%;
+  min-width: 250px;
 }
 
 .header {
@@ -36,8 +39,8 @@ input:focus {
   border-radius: 8px;
   padding: 16px;
   text-align: center;
-  width: 50%;
-  font-size: 15pt;
+  width: 40%;
+  font-size: 12pt;
 }
 
 .nameInput::placeholder {
@@ -58,6 +61,12 @@ input:focus {
   align-items: center;
 }
 
+.ratingRow {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
 .ratingInput {
   border: 1px #333333 solid;
   border-radius: 8px;
@@ -70,6 +79,7 @@ input:focus {
 }
 
 .button {
+  width: fit-content;
   border: 1px #333333 solid;
   border-radius: 4px;
   padding: 10px 20px;

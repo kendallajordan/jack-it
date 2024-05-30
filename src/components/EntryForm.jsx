@@ -122,7 +122,7 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
             )}
           </div>
           <div className={styles.ratingContainer}>
-            <div>
+            <div className={styles.ratingRow}>
               <button
                 className={styles.button}
                 type="button"
