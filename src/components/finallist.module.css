@@ -1,0 +1,42 @@
+.container {
+  border: 3px rgb(43, 14, 10) solid;
+  border-radius: 10px;
+  padding: 20px;
+  margin: auto;
+  margin-top: 3em;
+  background-color: rgb(250, 229, 197);
+  text-align: center;
+  width: 80%;
+  min-width: 250px;
+}
+
+.labelHeader {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  color: rgb(43, 14, 10);
+  font-weight: bolder;
+  font-size: 16pt;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25em;
+}
+
+.details {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  color: rgb(43, 14, 10);
+  font-weight: bolder;
+  font-size: 16pt;
+}
+
+.detailValue {
+  color: rgb(163, 40, 40);
+}

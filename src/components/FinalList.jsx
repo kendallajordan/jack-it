@@ -9,7 +9,11 @@ export default function FinalList({ finalists }) {
       <div className={styles.labelHeader}>
         <div>Entry</div>
         <div>Rating</div>
-        <div>Win Range</div>
+        <div>
+          Win
+          <br />
+          Range
+        </div>
       </div>
 
       <div className={styles.list}>
@@ -25,7 +29,10 @@ export default function FinalList({ finalists }) {
       </div>
 
       <div className={styles.details}>
-        <div>Total Entries: {totalEntries}</div>
+        <div>
+          Total Entries:{" "}
+          <span className={styles.detailValue}>{totalEntries}</span>
+        </div>
       </div>
     </div>
   );

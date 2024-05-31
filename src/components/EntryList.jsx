@@ -26,8 +26,14 @@ export default function EntryList({ entries, setEntries, points, setPoints }) {
       </div>
 
       <div className={styles.details}>
-        <div>Total Entries: {totalEntries}</div>
-        <div>Total Points Allocated: {100 - points}</div>
+        <div>
+          Total Entries:{" "}
+          <span className={styles.detailValue}>{totalEntries}</span>
+        </div>
+        <div>
+          Total Points Used:{" "}
+          <span className={styles.detailValue}>{100 - points}</span>{" "}
+        </div>
       </div>
     </div>
   );

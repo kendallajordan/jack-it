@@ -18,7 +18,7 @@ export default function Header() {
             Have Jack-It decide for you! <br />
           </p>
           <p>
-            Make your list, jack-it, and roll! <br />
+            Make your list, Jack-it, and roll! <br />
           </p>
         </div>
         <div className={styles.instructions}>
