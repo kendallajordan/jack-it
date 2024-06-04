@@ -1,0 +1,92 @@
+.itemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+}
+
+.itemName {
+  font-size: 1em;
+  font-weight: bold;
+  color: rgb(43, 14, 10);
+  flex: 1;
+  word-break: break-word;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.itemRating {
+  border: 1px #333333 solid;
+  border-radius: 8px;
+  padding: 5px 2px;
+  margin: 0 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9em;
+  width: 50px;
+}
+
+.button {
+  width: fit-content;
+  max-width: 50px;
+  border: 1px #333333 solid;
+  border-radius: 12px;
+  padding: 5px 12px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1em;
+  color: #333333;
+  background-color: rgb(255, 249, 239);
+}
+
+.button:active {
+  background-color: rgb(211, 203, 190);
+}
+
+.itemActions {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  margin-left: 10px;
+}
+
+.deleteButton {
+  border: 1px #333333 solid;
+  border-radius: 3px;
+  padding: 2px 9px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1.25em;
+  color: rgb(245, 245, 245);
+  background-color: rgb(194, 0, 0);
+}
+
+.deleteButton:hover {
+  background-color: rgb(230, 0, 0);
+}
+
+.deleteButton:active {
+  background-color: rgb(119, 0, 0);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

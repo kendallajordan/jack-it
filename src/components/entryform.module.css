@@ -103,6 +103,10 @@ input:focus {
   cursor: pointer;
 }
 
+.submit .button:hover {
+  background-color: rgb(120, 43, 207);
+}
+
 .submit .button:active {
   background-color: rgb(69, 25, 121);
 }
