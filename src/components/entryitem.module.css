@@ -3,8 +3,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid #333333;
-  border-radius: 5px;
 }
 
 .itemName {
