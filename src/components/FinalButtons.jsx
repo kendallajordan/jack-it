@@ -6,10 +6,6 @@ export default function FinalButtons({
   setWinner,
   setShowWinner,
 }) {
-  function unlockList() {
-    setLockedIn(false);
-  }
-
   // RNG roll a number between 1-100 inclusive.
   // Then find the finalist with the win-range the roll falls under.
   function chooseAtRandom() {
@@ -32,13 +28,23 @@ export default function FinalButtons({
     }
   }
 
+  function unlockList() {
+    setLockedIn(false);
+  }
+
   return (
     <div className={styles.container}>
-      <button className={styles.backButton} onClick={unlockList}>
-        GO BACK
-      </button>
-      <button className={styles.jackItButton} onClick={chooseAtRandom}>
+      <button
+        className={`${styles.button} ${styles.jackItButton}`}
+        onClick={chooseAtRandom}
+      >
         JACK IT!
+      </button>
+      <button
+        className={`${styles.button} ${styles.backButton}`}
+        onClick={unlockList}
+      >
+        GO BACK
       </button>
     </div>
   );

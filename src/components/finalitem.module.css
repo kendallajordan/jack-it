@@ -1,0 +1,25 @@
+.itemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgb(43, 14, 10);
+  text-align: center;
+}
+
+.itemName {
+  flex: 1;
+  word-break: break-word;
+  margin-right: 10px;
+}
+
+.itemRating {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.itemWinRange {
+  flex: 1;
+}

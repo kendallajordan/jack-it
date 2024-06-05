@@ -7,9 +7,9 @@ export default function FinalList({ finalists }) {
   return (
     <div className={styles.container}>
       <div className={styles.labelHeader}>
-        <div>Entry</div>
-        <div>Rating</div>
-        <div>
+        <div className={styles.labelEntry}>Entry</div>
+        <div className={styles.labelRating}>Rating (%)</div>
+        <div className={styles.labelWinRange}>
           Win
           <br />
           Range

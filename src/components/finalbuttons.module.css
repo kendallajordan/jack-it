@@ -1,0 +1,46 @@
+.container {
+  margin: auto;
+  margin-top: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 2.5em;
+}
+
+.button {
+  border: 1px #333333 solid;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 14pt;
+  flex: 1;
+  box-sizing: border-box;
+  max-width: 120px;
+  cursor: pointer;
+}
+
+.jackItButton {
+  color: rgb(241, 241, 241);
+  background-color: rgb(0, 228, 228);
+}
+
+.jackItButton:hover {
+  background-color: rgb(0, 255, 255);
+}
+
+.jackItButton:active {
+  background-color: rgb(0, 190, 190);
+}
+
+.backButton {
+  color: rgb(245, 245, 245);
+  background-color: rgb(224, 120, 0);
+}
+
+.backButton:hover {
+  background-color: rgb(255, 136, 0);
+}
+
+.backButton:active {
+  background-color: rgb(161, 86, 0);
+}

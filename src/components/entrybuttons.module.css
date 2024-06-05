@@ -10,7 +10,7 @@
   gap: 2.5em;
 }
 
-.buttonSection button {
+.button {
   border: 1px #333333 solid;
   border-radius: 4px;
   padding: 10px;
@@ -19,20 +19,6 @@
   flex: 1;
   box-sizing: border-box;
   max-width: 120px;
-}
-
-.clearButton {
-  color: rgb(245, 245, 245);
-  background-color: rgb(194, 0, 0);
-  cursor: pointer;
-}
-
-.clearButton:hover {
-  background-color: rgb(230, 0, 0);
-}
-
-.clearButton:active {
-  background-color: rgb(119, 0, 0);
 }
 
 .invalidLockInButton {
@@ -53,6 +39,20 @@
 
 .validLockInButton:active {
   background-color: #029166;
+}
+
+.clearButton {
+  color: rgb(245, 245, 245);
+  background-color: rgb(194, 0, 0);
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background-color: rgb(230, 0, 0);
+}
+
+.clearButton:active {
+  background-color: rgb(119, 0, 0);
 }
 
 .errorMessage {

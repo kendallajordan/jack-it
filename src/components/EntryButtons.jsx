@@ -58,17 +58,20 @@ export default function EntryButtons({
     <div className={styles.container}>
       <div className={styles.buttonSection}>
         <button
-          className={
+          className={`${styles.button} ${
             isInErrorState
               ? styles.invalidLockInButton
               : styles.validLockInButton
-          }
+          }`}
           onClick={lockInEntries}
           disabled={isInErrorState}
         >
           LOCK IN
         </button>
-        <button className={styles.clearButton} onClick={clearEntries}>
+        <button
+          className={`${styles.button} ${styles.clearButton}`}
+          onClick={clearEntries}
+        >
           CLEAR
         </button>
       </div>
