@@ -14,6 +14,9 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
 
   // Disable form submission if out of points.
   useEffect(() => {
+    if (entryRating > points) {
+      setEntryRating(points);
+    }
     if (points === 0) {
       setIsFormDisabled(true);
       setNameErrorMsg(false);
@@ -137,6 +140,7 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
             value={entryName}
             onChange={(e) => setEntryName(e.target.value)}
             placeholder="Entry name..."
+            disabled={isFormDisabled}
           />
           {emptyNameErrorMsg && (
             <span className={styles.errorMessage}>
@@ -165,6 +169,7 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
               max={points}
               value={entryRating}
               onChange={handleRatingChange}
+              disabled={isFormDisabled}
             />
             <button
               className={styles.button}
