@@ -8,7 +8,7 @@ export default function EntryList({ entries, setEntries, points, setPoints }) {
     <div className={styles.container}>
       <div className={styles.labelHeader}>
         <div className={styles.labelEntry}>Entry</div>
-        <div className={styles.labelRating}>Rating</div>
+        <div className={styles.labelRating}>Rating (%)</div>
       </div>
 
       <div className={styles.list}>
