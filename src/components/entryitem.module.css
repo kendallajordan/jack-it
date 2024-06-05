@@ -67,6 +67,7 @@
   font-size: 1.25em;
   color: rgb(245, 245, 245);
   background-color: rgb(194, 0, 0);
+  cursor: pointer;
 }
 
 .deleteButton:hover {

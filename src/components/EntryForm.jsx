@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./entryform.module.css";
 
 export default function EntryForm({ entries, setEntries, points, setPoints }) {
@@ -7,12 +7,44 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
   const [nameErrorMsg, setNameErrorMsg] = useState(false);
   const [emptyNameErrorMsg, setEmptyNameErrorMsg] = useState(false);
   const [ratingErrorMsg, setRatingErrorMsg] = useState(false);
+  const [isFormDisabled, setIsFormDisabled] = useState(false);
 
   const message1 = `On a scale of (1 - ${points}), how many points do you rate it?`;
   const message2 = "You are out of points. Can't add anymore entries.";
 
+  // Disable form submission if out of points.
+  useEffect(() => {
+    if (points === 0) {
+      setIsFormDisabled(true);
+      setNameErrorMsg(false);
+      setEmptyNameErrorMsg(false);
+      setRatingErrorMsg(false);
+    } else {
+      setIsFormDisabled(false);
+    }
+  }, [points]);
+
+  // Turn name field error messages off when user resumes typing name input.
+  useEffect(() => {
+    if (entryName !== "") {
+      setEmptyNameErrorMsg(false);
+      setNameErrorMsg(false);
+    }
+  }, [entryName]);
+
+  // Turn rating field error message off when user inputs valid number.
+  useEffect(() => {
+    if (entryRating !== "") {
+      setRatingErrorMsg(false);
+    }
+  }, [entryRating]);
+
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (points === 0) {
+      return;
+    }
 
     if (entryName === "") {
       setEmptyNameErrorMsg(true);
@@ -53,17 +85,14 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
 
     if (!isNaN(numValue) && numValue >= 1 && numValue <= points) {
       setEntryRating(numValue);
-      setRatingErrorMsg(false);
     } else if (numValue > points) {
       setEntryRating(points);
-      setRatingErrorMsg(false);
     }
   }
 
   function decrementNumber() {
     if (entryRating === "") {
       setEntryRating(1);
-      setRatingErrorMsg(false);
       return;
     }
 
@@ -77,7 +106,6 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
   function incrementNumber() {
     if (entryRating === "") {
       setEntryRating(1);
-      setRatingErrorMsg(false);
       return;
     }
 
@@ -95,70 +123,75 @@ export default function EntryForm({ entries, setEntries, points, setPoints }) {
     <div className={styles.outerContainer}>
       <div className={styles.header}>
         <h2>Add an Entry</h2>
-        {points > 0 ? message1 : message2}
+        {isFormDisabled ? message2 : message1}
         <p>
           Points remaining: <span className={styles.points}>{points}/100</span>
         </p>
       </div>
-      {points !== 0 && (
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div className={styles.nameContainer}>
+
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
+        <div className={styles.nameContainer}>
+          <input
+            className={styles.nameInput}
+            type="text"
+            value={entryName}
+            onChange={(e) => setEntryName(e.target.value)}
+            placeholder="Entry name..."
+          />
+          {emptyNameErrorMsg && (
+            <span className={styles.errorMessage}>
+              No name entered. Please fill in entry name.
+            </span>
+          )}
+          {nameErrorMsg && (
+            <span className={styles.errorMessage}>
+              Name already exists. Try a different name.
+            </span>
+          )}
+        </div>
+        <div className={styles.ratingContainer}>
+          <div className={styles.ratingRow}>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={decrementNumber}
+            >
+              -
+            </button>
             <input
-              className={styles.nameInput}
-              type="text"
-              value={entryName}
-              onChange={(e) => setEntryName(e.target.value)}
-              placeholder="Entry name..."
+              className={styles.ratingInput}
+              type="number"
+              min={1}
+              max={points}
+              value={entryRating}
+              onChange={handleRatingChange}
             />
-            {nameErrorMsg && (
-              <span className={styles.errorMessage}>
-                Name already exists. Try a different name.
-              </span>
-            )}
-            {emptyNameErrorMsg && (
-              <span className={styles.errorMessage}>
-                No name entered. Please fill in entry name.
-              </span>
-            )}
-          </div>
-          <div className={styles.ratingContainer}>
-            <div className={styles.ratingRow}>
-              <button
-                className={styles.button}
-                type="button"
-                onClick={decrementNumber}
-              >
-                -
-              </button>
-              <input
-                className={styles.ratingInput}
-                type="number"
-                min={1}
-                max={points}
-                value={entryRating}
-                onChange={handleRatingChange}
-              />
-              <button
-                className={styles.button}
-                type="button"
-                onClick={incrementNumber}
-              >
-                +
-              </button>
-            </div>
-            {ratingErrorMsg && (
-              <span className={styles.errorMessage}>
-                Rating field blank. Please rate the entry.
-              </span>
-            )}
-          </div>
-          <div className={styles.submit}>
-            <button className={styles.button} type="submit">
-              Add
+            <button
+              className={styles.button}
+              type="button"
+              onClick={incrementNumber}
+            >
+              +
             </button>
           </div>
-        </form>
-      )}
+          {ratingErrorMsg && (
+            <span className={styles.errorMessage}>
+              Rating field blank. Please rate the entry.
+            </span>
+          )}
+        </div>
+        <div className={styles.submit}>
+          <button
+            className={`${styles.button} ${
+              isFormDisabled ? styles.disabledSubmitButton : styles.submitButton
+            }`}
+            type="submit"
+            disabled={isFormDisabled}
+          >
+            Add
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

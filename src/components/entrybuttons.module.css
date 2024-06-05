@@ -1,17 +1,62 @@
 .container {
+  margin: auto;
+  margin-top: 2em;
+  text-align: center;
 }
 
 .buttonSection {
+  display: flex;
+  justify-content: center;
+  gap: 2.5em;
+}
+
+.buttonSection button {
+  border: 1px #333333 solid;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 14pt;
+  flex: 1;
+  box-sizing: border-box;
+  max-width: 120px;
 }
 
 .clearButton {
+  color: rgb(245, 245, 245);
+  background-color: rgb(194, 0, 0);
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background-color: rgb(230, 0, 0);
+}
+
+.clearButton:active {
+  background-color: rgb(119, 0, 0);
 }
 
 .invalidLockInButton {
+  color: rgb(54, 54, 54);
+  background-color: rgb(180, 180, 180);
+  cursor: not-allowed;
 }
 
 .validLockInButton {
+  color: rgb(245, 245, 245);
+  background-color: #04d395;
+  cursor: pointer;
+}
+
+.validLockInButton:hover {
+  background-color: #04f0a9;
+}
+
+.validLockInButton:active {
+  background-color: #029166;
 }
 
 .errorMessage {
+  margin-top: 1em;
+  color: red;
+  font-weight: bold;
 }

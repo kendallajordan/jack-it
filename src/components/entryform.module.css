@@ -78,6 +78,10 @@ input:focus {
   font-size: 15pt;
 }
 
+.submit {
+  margin-top: 20px;
+}
+
 .button {
   width: fit-content;
   border: 1px #333333 solid;
@@ -93,22 +97,28 @@ input:focus {
   background-color: rgb(214, 214, 230);
 }
 
-.submit {
-  margin-top: 20px;
-}
-
-.submit .button {
-  background-color: rgb(97, 35, 167);
+.submitButton {
   color: rgb(235, 235, 235);
+  background-color: rgb(97, 35, 167);
   cursor: pointer;
 }
 
-.submit .button:hover {
+.submitButton:hover {
   background-color: rgb(120, 43, 207);
 }
 
-.submit .button:active {
+.submitButton:active {
   background-color: rgb(69, 25, 121);
+}
+
+.disabledSubmitButton {
+  color: rgb(54, 54, 54);
+  background-color: rgb(180, 180, 180);
+  cursor: not-allowed;
+}
+
+.disabledSubmitButton:active {
+  background-color: rgb(180, 180, 180);
 }
 
 /* Chrome, Safari, Edge, Opera */

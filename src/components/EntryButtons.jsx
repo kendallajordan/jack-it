@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./entrybuttons.module.css";
 
 export default function EntryButtons({
@@ -9,8 +9,13 @@ export default function EntryButtons({
   setFinalists,
   setLockedIn,
 }) {
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
-  let lockInStyle = styles.validLockInButton;
+  const [isInErrorState, setIsInErrorState] = useState(false);
+
+  useEffect(() => {
+    if (points === 0) {
+      setIsInErrorState(false);
+    }
+  }, [points]);
 
   function clearEntries() {
     setEntries([]);
@@ -20,12 +25,9 @@ export default function EntryButtons({
   function lockInEntries() {
     // Only lock in entries if all points have been used.
     if (points !== 0) {
-      setShowErrorMessage(true);
-      lockInStyle = styles.invalidLockInButton;
+      setIsInErrorState(true);
       return;
     }
-    setShowErrorMessage(false);
-    lockInStyle = styles.validLockInButton;
 
     // generate the [min,max] win-ranges for each finalist in respect to their rating
     // using a cumulative sum approach.
@@ -55,16 +57,24 @@ export default function EntryButtons({
   return (
     <div className={styles.container}>
       <div className={styles.buttonSection}>
+        <button
+          className={
+            isInErrorState
+              ? styles.invalidLockInButton
+              : styles.validLockInButton
+          }
+          onClick={lockInEntries}
+          disabled={isInErrorState}
+        >
+          LOCK IN
+        </button>
         <button className={styles.clearButton} onClick={clearEntries}>
           CLEAR
-        </button>
-        <button className={lockInStyle} onClick={lockInEntries}>
-          LOCK IN
         </button>
       </div>
 
       <div className={styles.errorMessage}>
-        {showErrorMessage && <span>Use all 100 points to continue.</span>}
+        {isInErrorState && <span>Use all 100 points to continue.</span>}
       </div>
     </div>
   );
