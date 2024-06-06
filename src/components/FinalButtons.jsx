@@ -19,6 +19,7 @@ export default function FinalButtons({
         setWinner({
           name: winnerName,
           roll: roll,
+          rating: finalists[i].rating,
           min: finalists[i].min,
           max: finalists[i].max,
         });
