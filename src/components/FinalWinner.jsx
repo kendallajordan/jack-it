@@ -15,10 +15,10 @@ export default function FinalWinner({ winner, setWinner, setShowWinner }) {
           <div className={styles.resultName}>{winner.name}</div>
           <div className={styles.resultInfo}>
             <p>With a rating of {winner.rating}%</p>
-            <p>
+            {/* <p>
               You rolled a {winner.roll} which is in range [{winner.min} -{" "}
               {winner.max}]
-            </p>
+            </p> */}
           </div>
 
           <div className={styles.modalActions}>

@@ -6,8 +6,8 @@ export default function EntryButtons({
   setEntries,
   points,
   setPoints,
-  setFinalists,
-  setLockedIn,
+  setWinner,
+  setShowWinner,
 }) {
   const [isInErrorState, setIsInErrorState] = useState(false);
 
@@ -22,20 +22,33 @@ export default function EntryButtons({
     setPoints(100);
   }
 
-  function lockInEntries() {
-    // Only lock in entries if all points have been used.
+  function chooseEntryWinner() {
+    // Only choose and entry winner if all points have been used.
     if (points !== 0) {
       setIsInErrorState(true);
       return;
     }
 
-    // generate the [min,max] win-ranges for each finalist in respect to their rating
-    // using a cumulative sum approach.
+    // These 2 helper functions do the main logic of picking a winner.
+    const updatedEntries = generateWinRanges();
+    const entryWinner = chooseAtRandom(updatedEntries);
+
+    setWinner({
+      name: entryWinner.name,
+      rating: entryWinner.rating,
+    });
+    setShowWinner(true);
+  }
+
+  // generate the [min,max] win-ranges for each finalist in respect to their rating
+  // using a cumulative sum approach.
+  function generateWinRanges() {
     let updatedEntries = entries;
     let start = 1;
     let end = 0;
 
     for (let i = 0; i < entries.length; i++) {
+      // Do not give 0 rating entries a win-range.
       if (entries[i].rating === 0) {
         updatedEntries[i].min = -1;
         updatedEntries[i].max = -1;
@@ -50,8 +63,19 @@ export default function EntryButtons({
       start = end + 1;
     }
 
-    setFinalists(updatedEntries);
-    setLockedIn(true);
+    return updatedEntries;
+  }
+
+  // RNG roll a number between 1-100 inclusive.
+  // Then find the entry with the win-range the roll falls under.
+  function chooseAtRandom(updatedEntries) {
+    const roll = Math.floor(Math.random() * 100) + 1;
+
+    for (let i = 0; i < updatedEntries.length; i++) {
+      if (updatedEntries[i].min <= roll && roll <= updatedEntries[i].max) {
+        return updatedEntries[i];
+      }
+    }
   }
 
   return (
@@ -63,10 +87,10 @@ export default function EntryButtons({
               ? styles.invalidLockInButton
               : styles.validLockInButton
           }`}
-          onClick={lockInEntries}
+          onClick={chooseEntryWinner}
           disabled={isInErrorState}
         >
-          LOCK IN
+          JACK IT
         </button>
         <button
           className={`${styles.button} ${styles.clearButton}`}
