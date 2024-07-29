@@ -1,5 +1,6 @@
 import styles from "./jackit.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import EntryForm from "./EntryForm";
 import EntryList from "./EntryList";
 import EntryButtons from "./EntryButtons";
@@ -10,6 +11,21 @@ export default function JackIt() {
   const [points, setPoints] = useState(100);
   const [winner, setWinner] = useState({});
   const [showWinner, setShowWinner] = useState(false);
+  const URL = "backend-server-uri/api/entries"; // CHANGE LATER WITH CORRECT URL
+
+  // Initialize entries using previous session's entries stored in backend.
+  useEffect(() => {
+    const fetchEntries = async () => {
+      try {
+        const response = await axios.get(URL);
+        setEntries(response.data); // MAY NEED TO CHANGE LATER
+      } catch (error) {
+        console.error("ERROR: Failed to make GET request to backend:", error);
+      }
+    };
+
+    fetchEntries();
+  }, []);
 
   return (
     <div className={styles.container}>
