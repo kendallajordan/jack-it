@@ -7,13 +7,14 @@ import EntryButtons from "./EntryButtons";
 import FinalWinner from "./FinalWinner";
 
 export default function JackIt() {
+  const URL = "backend-server-uri/api/entries"; // CHANGE LATER WITH CORRECT URL
   const [entries, setEntries] = useState([]);
   const [points, setPoints] = useState(100);
   const [winner, setWinner] = useState({});
   const [showWinner, setShowWinner] = useState(false);
-  const URL = "backend-server-uri/api/entries"; // CHANGE LATER WITH CORRECT URL
 
   // Initialize entries using previous session's entries stored in backend.
+  // CHECK IF THIS WORKS LATER
   useEffect(() => {
     const fetchEntries = async () => {
       try {

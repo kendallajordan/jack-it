@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./entrybuttons.module.css";
+import axios from "axios";
 
 export default function EntryButtons({
   entries,
@@ -9,6 +10,7 @@ export default function EntryButtons({
   setWinner,
   setShowWinner,
 }) {
+  const URL = "backend-server-uri/api/entries"; // CHANGE LATER WITH CORRECT URL
   const [isInErrorState, setIsInErrorState] = useState(false);
 
   useEffect(() => {
@@ -17,10 +19,20 @@ export default function EntryButtons({
     }
   }, [points]);
 
-  function clearEntries() {
+  // Reset entries to empty and points to 100.
+  // Also delete previous session's entries from backend.
+  // CHECK IF DELETE WORKS LATER
+  const clearEntries = async () => {
+    try {
+      await axios.delete(URL);
+      console.log("SUCCESS: Entries DELETED from backend.");
+    } catch (error) {
+      console.error("ERROR: Failed to make DELETE request to backend:", error);
+    }
+
     setEntries([]);
     setPoints(100);
-  }
+  };
 
   function chooseEntryWinner() {
     // Only choose and entry winner if all points have been used.
