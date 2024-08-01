@@ -6,8 +6,8 @@ export default function Header() {
       <div className={styles.title}>JACK-IT APP</div>
       <div className={styles.content}>
         <div className={styles.description}>
-          <p>Version 2 (Simple)</p>
           <h3>Description:</h3>
+          <p>Version 2 (Simple)</p>
           <p>
             An app that selects an entry from a rating-based list at random.{" "}
           </p>
