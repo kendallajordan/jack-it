@@ -7,6 +7,7 @@ export default function Header() {
       <div className={styles.content}>
         <div className={styles.description}>
           <h3>Description:</h3>
+          <p>(Fullstack version using Axios, Spring Boot, and Postgresql)</p>
           <p>
             An app that selects an entry from a rating-based list at random.{" "}
           </p>

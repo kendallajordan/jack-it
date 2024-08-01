@@ -7,19 +7,23 @@ import EntryButtons from "./EntryButtons";
 import FinalWinner from "./FinalWinner";
 
 export default function JackIt() {
-  const URL = "backend-server-uri/api/entries"; // CHANGE LATER WITH CORRECT URL
+  const URL = "http://localhost:8080/entries";
   const [entries, setEntries] = useState([]);
   const [points, setPoints] = useState(100);
   const [winner, setWinner] = useState({});
   const [showWinner, setShowWinner] = useState(false);
 
   // Initialize entries using previous session's entries stored in backend.
-  // CHECK IF THIS WORKS LATER
   useEffect(() => {
     const fetchEntries = async () => {
       try {
         const response = await axios.get(URL);
-        setEntries(response.data); // MAY NEED TO CHANGE LATER
+        setEntries(response.data);
+
+        // If previous session's entries retrieved, set points to 0.
+        if (response.data.length > 0) {
+          setPoints(0);
+        }
       } catch (error) {
         console.error("ERROR: Failed to make GET request to backend:", error);
       }
